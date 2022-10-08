@@ -23,4 +23,10 @@ public class Grade {
     public CourseOffering getOffering() {
         return offering;
     }
+
+    public boolean hasPassed() {
+        if (grade == null) return false;
+        if (mark >= 50 && grade != "FL" && grade != "UF") return true;
+        return false;
+    }
 }

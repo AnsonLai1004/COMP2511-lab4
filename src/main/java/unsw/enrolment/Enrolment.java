@@ -21,11 +21,12 @@ public class Enrolment {
     }
 
     public boolean hasPassedCourse() {
-        if (grade == null) {
+        /*if (grade == null) {
             return false;
         }
 
-        return grade.getMark() >= 50 && grade.getGrade() != "FL" && grade.getGrade() != "UF";
+        return grade.getMark() >= 50 && grade.getGrade() != "FL" && grade.getGrade() != "UF";*/
+        return grade.hasPassed();
     }
 
     public Course getCourse() {

@@ -50,15 +50,17 @@ public class CourseOffering extends Course {
         List<Course> prereqs = getCoursePrereqs();
 
         for (Course prereq : prereqs) {
+            
             List<Enrolment> studentEnrolments = student.getEnrolments();
             boolean valid = false;
 
             for (Enrolment enrolment : studentEnrolments) {
                 if (enrolment.getCourse().equals(prereq) && enrolment.getGrade() != null) {
-                    if (enrolment.getGrade().getMark() >= 50 && enrolment.getGrade().getGrade() != "FL"
+                    /*if (enrolment.getGrade().getMark() >= 50 && enrolment.getGrade().getGrade() != "FL"
                         && enrolment.getGrade().getGrade() != "UF") {
                             valid = true;
-                        }
+                        }*/
+                    if (enrolment.hasPassedCourse()) valid = true;
                 }
 
                 if (!valid) {
@@ -66,7 +68,7 @@ public class CourseOffering extends Course {
                 }
             }
         }
-
+        
         return true;
     }
 
