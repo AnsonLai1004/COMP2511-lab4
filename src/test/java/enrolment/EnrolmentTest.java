@@ -104,8 +104,25 @@ public class EnrolmentTest {
     @Test
     public void testComparator() {
         List<Student> students = parseStudentsCSV("/students.csv");
+        Course cs1511 = new Course("COMP1511", "Programming Fundamentals");
+        CourseOffering cs1511Offering = new CourseOffering(cs1511, "19T1");
 
-        // Replace this with your failing unit test
-        assertTrue(false);
+        // enroll students
+        students.stream().forEach(
+            s -> {
+                assertDoesNotThrow(() -> {
+                    cs1511Offering.addEnrolment(s);
+                });
+                assertTrue(s.isEnrolled(cs1511Offering));
+            }
+        );
+        List<Student> sorted = parseStudentsCSV("/sorted.csv");
+        
+        for (int i = 0; i < students.size(); i++) {
+            assertEquals(cs1511Offering.studentsEnrolledInCourse().get(i).getName(), sorted.get(i).getName());
+            assertEquals(cs1511Offering.studentsEnrolledInCourse().get(i).getProgram(), sorted.get(i).getProgram());
+            assertEquals(cs1511Offering.studentsEnrolledInCourse().get(i).getZid(), sorted.get(i).getZid());
+        }
+       
     }
 }
