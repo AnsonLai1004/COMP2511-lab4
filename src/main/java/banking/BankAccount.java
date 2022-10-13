@@ -3,7 +3,8 @@ package banking;
 public class BankAccount {
     public double currentBalance;
 
-    public BankAccount(double currentBalance) {
+    public BankAccount(double currentBalance) throws Exception {
+        if (currentBalance < 0) throw new Exception("Balance must be >= 0");
         this.currentBalance = currentBalance;
     }
 

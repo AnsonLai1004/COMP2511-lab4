@@ -2,7 +2,7 @@ package banking;
 
 public class LoggedBankAccount extends BankAccount {
 
-    public LoggedBankAccount(double currentBalance) {
+    public LoggedBankAccount(double currentBalance) throws Exception {
         super(currentBalance);
     }
 
